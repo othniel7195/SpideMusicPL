@@ -61,6 +61,15 @@ class SpiderPlayList:
 
         return hrefs
 
+    def getEveryPlayListIds(self, index):
+        rsponse = self.spider_pagenumber(index)
+        ehrefs = self.parse_html(rsponse)
+        if len(ehrefs) > 0:
+            return ehrefs, index + 1
+        else:
+            return None, index + 1
+
+
     def getThreePlayListIds(self):
 
         stop = True

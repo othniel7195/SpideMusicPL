@@ -36,7 +36,6 @@ class SpiderSong:
 
 
 
-
 if __name__ == '__main__':
     s = SpiderSong("2016578967")
     print json.dumps(s.getAllSongIdAndName(), encoding="UTF-8", ensure_ascii=False)
