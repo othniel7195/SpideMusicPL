@@ -43,16 +43,30 @@ import SpiderSettings
 # fa115b769ad580fc51128cc9993e51276043ccbd9ca4e1f589a2ec479ab0323c973e7f7b1fe1a7cd0a02ababe2adecadd4ac93d09744be0deafd1eef\
 # 0cfbc79903216b1b71a82f9698eea0f0dc594f1269b419393c0'}#这里每行末尾的‘\’是代码过长用来换行的，慎用，换行多了易出现bug。
 
-r = requests.get("http://music.163.com/song?id=330508")
-soup = BeautifulSoup(r.content,"html.parser")
-#print soup
-l = soup.find_all("meta")
-print l
-for i1 in l:
-   # print i1.attrs.get(u"name") #type:dict
-    if i1.attrs.get(u"name") == "keywords":
-        print i1.attrs.get(u"content")
+# r = requests.get("http://music.163.com/song?id=330508")
+# soup = BeautifulSoup(r.content,"html.parser")
+# #print soup
+# l = soup.find_all("meta")
+# print l
+# for i1 in l:
+#    # print i1.attrs.get(u"name") #type:dict
+#     if i1.attrs.get(u"name") == "keywords":
+#         print i1.attrs.get(u"content")
 
 
+from multiprocessing import Pool
+import time
 
+
+def fuc(i):
+    print i
+    time.sleep(1)
+
+
+pool = Pool(processes=4)
+
+for i in xrange(100):
+    pool.apply_async(func=fuc,args=(i,))
+pool.close()
+pool.join()
 

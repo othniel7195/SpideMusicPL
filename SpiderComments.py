@@ -27,15 +27,15 @@ class SpiderComment:
     def getSongCommentTotal(self):
 
         response = requests.post(self.getSongCommentUrl(),headers=SpiderSettings.headers,params=SpiderSettings.params)
-        print response.text
+        #print response.text
 
-        return json.loads(response.text)[u'total']
+        return json.loads(response.text).get(u'total')
 
     def getSongSingerName(self):
         response = requests.get(self.getSongSingerUrl())
-        print response.url
+        #print response.url
         soup = BeautifulSoup(response.content, "html.parser")
-        print soup
+        #print soup
         metas = soup.find_all("meta")
         for meta in metas:
             if meta.attrs.get(u"name") == "keywords":
